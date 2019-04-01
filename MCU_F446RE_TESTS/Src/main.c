@@ -54,7 +54,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "usbd_cdc_if.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -76,6 +76,12 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+uint8_t DataToSend[64];
+uint8_t MessageCounter = 0;
+uint8_t MessageLength = 0;
+
+uint8_t ReceivedData[64];
+uint8_t ReceivedDataFlag = 0;
 
 /* USER CODE END PV */
 
@@ -124,12 +130,21 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+	  if(ReceivedDataFlag == 1)
+	  {
+		  ReceivedDataFlag = 0;
+		  MessageLength = sprintf(DataToSend,  "Odebrano: %s\n\r", ReceivedData);
+		  CDC_Transmit_FS(DataToSend, MessageLength);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
