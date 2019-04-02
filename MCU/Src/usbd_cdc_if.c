@@ -288,13 +288,27 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   * @param  Len: Number of data received (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
-{
-  /* USER CODE BEGIN 6 */
-  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
-  USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-  return (USBD_OK);
-  /* USER CODE END 6 */
+static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len) {
+	/* USER CODE BEGIN 6 */
+	USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+	USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+
+	// Zmienne zadeklarowane w pliku main.c
+	extern uint8_t ReceivedData[64]; // Tablica przechowujaca odebrane dane
+	extern uint8_t ReceivedDataFlag; // Flaga informujaca o odebraniu danych
+	extern uint32_t ReceivedDataLength;
+	// Wyczyszczenie tablicy odebranych danych
+	uint8_t iter;
+	for (iter = 0; iter < 64; ++iter) {
+		ReceivedData[iter] = 0;
+	}
+
+	strlcpy(ReceivedData, Buf, (*Len) + 1); // Przekopiowanie danych do naszej tablicy
+	ReceivedDataLength = (*Len)+1;
+	USB_ReceiveCallback();
+
+	return (USBD_OK);
+	/* USER CODE END 6 */
 }
 
 /**
