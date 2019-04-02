@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>MCU_F446RE_TESTS</name>
+<<<<<<< HEAD
 	<comment />
+=======
+	<comment></comment>
+>>>>>>> DESKTOP_APP
 	<projects>
 	</projects>
 	<buildSpec>
@@ -24,7 +28,10 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 		<nature>fr.ac6.mcu.ide.core.MCUProjectNature</nature>
 	</natures>
+<<<<<<< HEAD
 	<linkedResources>
 		
 	</linkedResources>
+=======
+>>>>>>> DESKTOP_APP
 </projectDescription>
