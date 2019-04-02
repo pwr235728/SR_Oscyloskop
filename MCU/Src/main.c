@@ -131,12 +131,18 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
+
+  // Placeholder
+  uint16_t adc_value;
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  USB_SendSample(adc_value);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

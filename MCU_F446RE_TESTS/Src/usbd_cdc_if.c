@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file           : usbd_cdc_if.c
-  * @version        : v2.0_Cube
+  * @version        : v1.0_Cube
   * @brief          : Usb device for Virtual Com Port.
   ******************************************************************************
   * This notice applies to any and all portions of this file
@@ -296,7 +296,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len) {
 	// Zmienne zadeklarowane w pliku main.c
 	extern uint8_t ReceivedData[64]; // Tablica przechowujaca odebrane dane
 	extern uint8_t ReceivedDataFlag; // Flaga informujaca o odebraniu danych
-	extern uint32_t ReceivedDataLength;
+
 	// Wyczyszczenie tablicy odebranych danych
 	uint8_t iter;
 	for (iter = 0; iter < 64; ++iter) {
@@ -304,9 +304,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len) {
 	}
 
 	strlcpy(ReceivedData, Buf, (*Len) + 1); // Przekopiowanie danych do naszej tablicy
-	ReceivedDataLength = (*Len)+1;
-	USB_ReceiveCallback();
-
+	ReceivedDataFlag = 1; // Ustawienie flagi odebrania danych
 	return (USBD_OK);
 	/* USER CODE END 6 */
 }
