@@ -22,7 +22,7 @@ uint32_t ReceivedDataLength;
 void USB_SendSample(uint16_t sample) {
 
 	// Wys³anie próbki i separatora
-	MessageLength = sprintf(DataToSend, "%d;", sample);
+	MessageLength = sprintf(DataToSend, "%d\n", sample);
 	CDC_Transmit_FS(DataToSend, MessageLength);
 }
 

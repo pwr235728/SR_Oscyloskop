@@ -138,13 +138,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  HAL_Delay(100);
 
-	  if(ReceivedDataFlag == 1)
-	  {
-		  ReceivedDataFlag = 0;
-		  MessageLength = sprintf(DataToSend,  "Odebrano: %s\n\r", ReceivedData);
-		  CDC_Transmit_FS(DataToSend, MessageLength);
-	  }
+	  CDC_Transmit_FS("test\n", 5);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

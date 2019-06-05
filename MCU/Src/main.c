@@ -133,7 +133,7 @@ int main(void)
 
 
   // Placeholder
-  uint16_t adc_value;
+  uint16_t adc_value = 0;
 
 
   /* USER CODE END 2 */
@@ -142,6 +142,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  adc_value++;
 	  USB_SendSample(adc_value);
     /* USER CODE END WHILE */
 
