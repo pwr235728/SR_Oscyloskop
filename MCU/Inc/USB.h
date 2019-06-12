@@ -11,8 +11,8 @@
 #include "usb_device.h"
 
 // Funkcja wysy³aj¹ca probki
-void USB_SendSample(uint16_t sample);
-
+void USB_SendSample(uint8_t sample);
+void USB_SendSamples(uint8_t samples[], uint32_t length);
 // Callback wywolywany przy odbieraniu danych
 void USB_ReceiveCallback();
 

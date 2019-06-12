@@ -1,5 +1,6 @@
 #include "display.h"
 
+#include "trigger.h"
 
 Display::Display(QWidget *parent)
     : QCustomPlot(parent)
@@ -68,7 +69,7 @@ int Display::AddPoints(bool new_shot, const QVector<double> &x, const QVector<do
     if(x.length() ==0)
         return 0;
 
-    if(graph(0)->data()->size() > 100)
+    if(graph(0)->data()->size() > trigger::get_sample_count())
         graph(0)->data()->clear();
 
     graph(0)->addData(x, y);

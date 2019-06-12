@@ -17,7 +17,7 @@ public:
     int AddPoints(bool new_shot, const QVector<double> &x, const QVector<double> &y);
     AxisTag *triggerTag = nullptr;
 private:
-    static const int sample_count = 1000;
+    static const int sample_count = 2000;
     QCPCurve *newCurve = nullptr;
     int counter = 0;
 

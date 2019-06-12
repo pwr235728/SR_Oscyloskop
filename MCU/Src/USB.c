@@ -19,12 +19,18 @@ uint8_t ReceivedData[64];
 uint32_t ReceivedDataLength;
 
 
-void USB_SendSample(uint16_t sample) {
+void USB_SendSample(uint8_t sample) {
 
 	// Wys³anie próbki i separatora
 	MessageLength = sprintf(DataToSend, "%d\n", sample);
 	CDC_Transmit_FS(DataToSend, MessageLength);
 }
+
+void USB_SendSamples(uint8_t samples[], uint32_t length)
+{
+	CDC_Transmit_FS(samples, length);
+}
+
 
 void USB_ReceiveCallback(){
 

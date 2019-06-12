@@ -9,8 +9,8 @@ class trigger
 public:
     trigger();
 
-    double sample_time = 0.001;
-    double duration = 0.1; // 1 sekunda  poziomo
+    static double sample_time; // 20KHz
+    static double duration; // 1 sekunda  poziomo
     double trigger_level = 0.0;
 
     QVector<double> ready_values;
@@ -22,7 +22,7 @@ public:
 
     int read(QVector<double> &keys, QVector<double> &values);
 
-    int get_sample_count();
+    static int get_sample_count();
 
     double get_sample_inc();
 

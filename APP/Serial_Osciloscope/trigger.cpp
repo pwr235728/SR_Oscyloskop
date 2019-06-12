@@ -1,5 +1,9 @@
 #include "trigger.h"
 #include <QDebug>
+
+
+double trigger::sample_time = 0.00005; // 20KHz
+double trigger::duration = 0.2; // 1 sekunda  poziomo
 trigger::trigger()
 {
 
@@ -16,7 +20,8 @@ int trigger::read(QVector<double> &keys, QVector<double> &values)
 
 int trigger::get_sample_count()
 {
-    return int(duration/sample_time);
+   // qInfo() << "sampple count : " << int(duration/sample_time) << "\n";
+    return int(trigger::duration/trigger::sample_time);
 }
 
 double trigger::get_sample_inc()
@@ -48,10 +53,11 @@ int trigger::AddData(const QVector<double> &values)
             {
                 wait_for_trig = true;
                 sample_number = 0;
+                qInfo() << "overflow\n";
                 prev = 2;
                 return 1;
             }
-            qDebug() << " prev: " << prev << " c: " << val <<"\n";
+           // qDebug() << " prev: " << prev << " c: " << val <<"\n";
         }
         prev = val;
     }
